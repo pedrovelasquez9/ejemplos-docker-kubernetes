@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-test
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: nginx
+      namespace: default
+      labels:
+        env: beta
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        node: bestnode
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-test
+spec:
+  ports:
+  - name: "www"
+    port: 80
+    targetPort: 80
+  selector:
+    run: my-nginx
+    type: NodePort
+
