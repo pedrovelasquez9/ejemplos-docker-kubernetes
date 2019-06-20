@@ -11,7 +11,7 @@
 master:
   componentName: jenkins-master
   image: "jenkins/jenkins"
-  imageTag: "2.141"
+  imageTag: "latest"
   imagePullPolicy: "Always"
   component: "jenkins-master"
   useSecurity: true
